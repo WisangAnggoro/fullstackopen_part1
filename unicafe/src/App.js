@@ -12,12 +12,16 @@ const GiveFeedback = ({goodButtonHandler, neutralButtonHandler, badButtonHandler
 }
 
 const Statistics = ({goodCount, neutralCount, badCount}) => {
+  let total = goodCount+neutralCount+badCount
   return (
     <div>
       <h1>Statistics</h1>
       <p>good {goodCount}</p>
       <p>neutral {neutralCount}</p>
       <p>bad {badCount}</p>
+      <p>all {total}</p>
+      <p>average {(goodCount-badCount)/total}</p>
+      <p>positive {goodCount/total*100}%</p>
     </div>
   )
 }
