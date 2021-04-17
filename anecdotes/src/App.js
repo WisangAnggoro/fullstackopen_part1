@@ -9,15 +9,26 @@ const App = () => {
     'Premature optimization is the root of all evil.',
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
   ]
-   
+  
   const [selected, setSelected] = useState(0)
+  const [votesCount, setVotesCount] = useState([
+    0,0,0,0,0,0
+  ])
+
   const randomAnecdotes = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
+  }
+  const voteSomeAnecdotes = (index) => {
+    let copy = [...votesCount]
+    copy[index]+=1
+    setVotesCount(copy)
   }
 
   return (
     <div>
       <p>{anecdotes[selected]}</p> 
+      <p>has {votesCount[selected]} votes</p>
+      <button onClick={() => voteSomeAnecdotes(selected)}>vote</button>
       <button onClick={randomAnecdotes}>next anecdotes</button>
     </div>
   )
